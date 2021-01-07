@@ -8,6 +8,4 @@ npx cap sync android
 npx cap open android
 ```
 
-<img src="docs/img/screen-1.png" width="200px">
-<img src="docs/img/screen-2.png" width="200px">
-<img src="docs/img/screen-3.png" width="200px">
+<img src="docs/img/screen-1.png" width="31%"> <img src="docs/img/screen-2.png" width="31%"> <img src="docs/img/screen-3.png" width="31%">

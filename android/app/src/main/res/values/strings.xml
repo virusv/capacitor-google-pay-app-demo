@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">capacitor-google-pay-app-demo</string>
+    <string name="title_activity_main">capacitor-google-pay-app-demo</string>
+    <string name="package_name">pro.sharks.gpayappdemo</string>
+    <string name="custom_url_scheme">pro.sharks.gpayappdemo</string>
+</resources>

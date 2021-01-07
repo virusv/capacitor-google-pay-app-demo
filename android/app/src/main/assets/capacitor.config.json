@@ -1,0 +1,12 @@
+{
+  "appId": "pro.sharks.gpayappdemo",
+  "appName": "capacitor-google-pay-app-demo",
+  "bundledWebRuntime": true,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

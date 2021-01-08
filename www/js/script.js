@@ -57,9 +57,10 @@ async function gpayInit() {
       },
     };
   
-    await GPayNative.loadPaymentData({ request: paymentDataRequest });
+    return await GPayNative.loadPaymentData({ request: paymentDataRequest });
   }
 
+  // create PaymentsClient instance
   await GPayNative.createClient({ test: true });
 
   return {
@@ -70,11 +71,6 @@ async function gpayInit() {
 
 const payBtn = document.getElementById('gpaybtn');
 const resContainer = document.getElementById('res_container');
-
-GPayNative.addListener('success', data => {
-  const resJsonFormat = JSON.stringify(data, null, '  ');
-  resContainer.innerHTML = `<pre>${resJsonFormat}</pre>`;
-});
 
 gpayInit().then(async gpay => {
   if (!await gpay.isReadyToPay()) {
@@ -87,10 +83,33 @@ gpayInit().then(async gpay => {
     event.preventDefault();
     
     payBtn.setAttribute('disabled', 'disabled');
-    await gpay.loadPaymentData(10.45);
-    payBtn.removeAttribute('disabled');
+    try {
+      const data = await gpay.loadPaymentData(10.45);
+      const resJsonFormat = JSON.stringify(data, null, '  ');
+      resContainer.innerHTML = `<pre>${resJsonFormat}</pre>`;
+    } catch (e) {
+      if (e.message === 'canceled') {
+        resContainer.innerHTML = "Вы закрыли окно оплаты";
+      } else {
+        resContainer.innerHTML = `Error: ${e.message}`;
+      }
+    } finally {
+      payBtn.removeAttribute('disabled');
+    }
   });
 });
 
+// События платежей
+GPayNative.addListener('success', data => {
+  console.log('Успешный платеж', data);
+});
+
+GPayNative.addListener('error', err => {
+  console.log('Возникла ошибка', err.message);
+});
+
+GPayNative.addListener('canceled', () => {
+  console.log('Пользователь передумал');
+});
 
 

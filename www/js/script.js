@@ -35,7 +35,7 @@ async function gpayInit() {
       allowedPaymentMethods: [baseCardPaymentMethod],
     };
   
-    const { isReady } = await GPayNative.isReadyToPay({ request: isReadyToPayRequest });
+    const { isReady } = await GPayNative.isReadyToPay(isReadyToPayRequest);
     return isReady;
   }
 
@@ -57,7 +57,7 @@ async function gpayInit() {
       },
     };
   
-    return await GPayNative.loadPaymentData({ request: paymentDataRequest });
+    return await GPayNative.loadPaymentData(paymentDataRequest);
   }
 
   // create PaymentsClient instance
